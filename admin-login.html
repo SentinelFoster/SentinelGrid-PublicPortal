@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Login | Sentinel Dynamics</title>
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-box {
+      background-color: #222;
+      padding: 30px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 6px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .error {
+      margin-top: 10px;
+      color: #ff4c4c;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>Commander Login</h2>
+    <input type="password" id="adminPass" placeholder="Enter Admin Password">
+    <button onclick="login()">Access Console</button>
+    <div class="error" id="errorMsg"></div>
+  </div>
+  <script>
+    function login() {
+      const input = document.getElementById("adminPass").value;
+      if (input === "Sentinel2025") {
+        window.location.href = "/admin/admin-hybrid-console-gpt.html";
+      } else {
+        document.getElementById("errorMsg").textContent = "Access Denied.";
+      }
+    }
+  </script>
+</body>
+</html>
