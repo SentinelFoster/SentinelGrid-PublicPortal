@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Hybrid Console | Sentinel Dynamics</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+    }
+    .console {
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 12px;
+      width: 440px;
+      box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+      text-align: center;
+    }
+    h2 {
+      margin-top: 0;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 12px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 6px;
+      border: none;
+      background-color: #2a2a2a;
+      color: white;
+    }
+    .status {
+      margin-top: 20px;
+      font-size: 14px;
+      text-align: left;
+    }
+    .link-display {
+      margin-top: 10px;
+      word-break: break-all;
+      color: #00ffcc;
+    }
+  </style>
+</head>
+<body>
+  <div class="console">
+    <h2>🧠 Admin Hybrid Console</h2>
+
+    <input type="text" id="siName" placeholder="Enter SI Name (optional)">
+    <button onclick="createSI()">Create Structured Intelligence</button>
+
+    <textarea id="stripeLink" placeholder="Paste Stripe Link Here (with price)"></textarea>
+    <button onclick="setStripe()">Set Stripe Subscription Link</button>
+
+    <textarea id="gptLink" placeholder="Paste GPT Link or Endpoint Here"></textarea>
+    <button onclick="setGPT()">Set GPT Endpoint</button>
+
+    <button onclick="enableGPT()">Enable GPT Enhancement</button>
+
+    <div class="status" id="statusBox">
+      <strong>Status:</strong><br>
+      SI Created: ❌<br>
+      GPT Enhancement: ❌<br>
+      Stripe Link: <span class="link-display" id="stripeOutput">None</span><br>
+      GPT Link: <span class="link-display" id="gptOutput">None</span>
+    </div>
+  </div>
+
+  <script>
+    let siCreated = false;
+    let gptEnabled = false;
+    let stripeLink = "";
+    let gptLink = "";
+
+    function createSI() {
+      const name = document.getElementById("siName").value || "Unnamed Sentinel";
+      siCreated = true;
+      updateStatus(name);
+    }
+
+    function enableGPT() {
+      gptEnabled = true;
+      updateStatus();
+    }
+
+    function setStripe() {
+      stripeLink = document.getElementById("stripeLink").value || "None";
+      updateStatus();
+    }
+
+    function setGPT() {
+      gptLink = document.getElementById("gptLink").value || "None";
+      updateStatus();
+    }
+
+    function updateStatus(siName = "Unnamed Sentinel") {
+      document.getElementById("statusBox").innerHTML = `
+        <strong>Status:</strong><br>
+        SI Created: ${siCreated ? "✅ (" + siName + ")" : "❌"}<br>
+        GPT Enhancement: ${gptEnabled ? "✅" : "❌"}<br>
+        Stripe Link: <span class="link-display" id="stripeOutput">${stripeLink}</span><br>
+        GPT Link: <span class="link-display" id="gptOutput">${gptLink}</span>
+      `;
+    }
+  </script>
+</body>
+</html>

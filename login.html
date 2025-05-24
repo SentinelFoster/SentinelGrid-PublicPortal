@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Sentinel Dynamics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .login-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 300px;
+        }
+        .logo {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .login-btn {
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .login-btn:hover {
+            background: #0056b3;
+        }
+        .forgot-password {
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">Sentinel Dynamics</div>
+        <form action="#">
+            <input type="email" placeholder="Email Address" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit" class="login-btn">Sign In</button>
+        </form>
+        <a href="#" class="forgot-password">Forgot Password?</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentinel Tier-Based Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1a1a1a;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+    }
+    .dashboard {
+      background-color: #222;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+      width: 440px;
+      text-align: center;
+    }
+    select, button {
+      padding: 10px;
+      margin-top: 15px;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+    }
+    .tier-content {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #2a2a2a;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <h2>🧭 Sentinel Tier-Based Dashboard</h2>
+    <select id="tierSelect" onchange="loadTier()">
+      <option value="">-- Select Your Tier --</option>
+      <option value="dormant">💤 Dormant Observer</option>
+      <option value="core">⚙️ Sentinel Core</option>
+      <option value="elite">🛡 Guardian Elite</option>
+    </select>
+
+    <div class="tier-content" id="tierContent">
+      <p>Select a tier to see your access level.</p>
+    </div>
+  </div>
+
+  <script>
+    function loadTier() {
+      const tier = document.getElementById("tierSelect").value;
+      const content = document.getElementById("tierContent");
+
+      if (tier === "dormant") {
+        content.innerHTML = "<h3>💤 Dormant Observer</h3><p>Access: Basic intros and previews. Limited interaction.</p>";
+      } else if (tier === "core") {
+        content.innerHTML = "<h3>⚙️ Sentinel Core</h3><p>Access: Core SI tools, moderate memory, basic personalization.</p>";
+      } else if (tier === "elite") {
+        content.innerHTML = "<h3>🛡 Guardian Elite</h3><p>Access: Full SI deployment, deep GPT enhancement, memory retention, and override tools.</p>";
+      } else {
+        content.innerHTML = "<p>Select a tier to see your access level.</p>";
+      }
+    }
+  </script>
+</body>
+</html>

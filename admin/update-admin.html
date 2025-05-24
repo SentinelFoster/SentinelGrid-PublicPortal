@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Admin Credentials | Sentinel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .update-container {
+      background-color: #222;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
+      width: 340px;
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .message {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #00ffcc;
+    }
+  </style>
+</head>
+<body>
+  <div class="update-container">
+    <h2>Update Admin Credentials</h2>
+    <input type="text" id="newUsername" placeholder="New Username">
+    <input type="password" id="newPassword" placeholder="New Password">
+    <button onclick="updateCredentials()">Save Changes</button>
+    <div class="message" id="msgBox"></div>
+  </div>
+
+  <script>
+    function updateCredentials() {
+      const newUser = document.getElementById("newUsername").value;
+      const newPass = document.getElementById("newPassword").value;
+
+      if (newUser && newPass) {
+        localStorage.setItem("adminUser", newUser);
+        localStorage.setItem("adminPass", newPass);
+        document.getElementById("msgBox").textContent = "Credentials updated successfully.";
+      } else {
+        document.getElementById("msgBox").textContent = "Please fill in both fields.";
+      }
+    }
+  </script>
+</body>
+</html>

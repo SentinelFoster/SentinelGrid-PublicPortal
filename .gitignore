@@ -1,0 +1,11 @@
+.env
+.env.local
+__pycache__/
+*.pyc
+*.pyo
+.vscode/
+.idea/
+node_modules/
+dist/
+build/
+server/webhook_server.py

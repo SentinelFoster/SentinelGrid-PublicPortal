@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GenesisPrototype-001 – v7.2: Voice Fix for Clean Output</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0f0f0f;
+      color: white;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .shell {
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 750px;
+      box-shadow: 0 0 25px rgba(0, 123, 255, 0.25);
+    }
+    textarea, input, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      background-color: #2a2a2a;
+      border: none;
+      border-radius: 8px;
+      color: white;
+    }
+    button {
+      margin-top: 10px;
+      padding: 12px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .response-block {
+      margin-top: 15px;
+      padding: 15px;
+      background-color: #252525;
+      border-radius: 8px;
+    }
+    .section {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <h2>🧠 GenesisPrototype-001 – v7.2</h2>
+
+    <div class="section">
+      <h3>🎙 Select Voice</h3>
+      <select id="voiceSelect"><option>Loading voices...</option></select>
+    </div>
+
+    <div class="section">
+      <h3>📘 Teach the SI</h3>
+      <input id="trainPhrase" placeholder="Trigger Phrase (e.g. hi)">
+      <input id="trainResponse" placeholder="Response (e.g. Hello, Commander)">
+      <button onclick="savePair()">Save to Memory</button>
+    </div>
+
+    <div class="section">
+      <h3>🧪 Test the SI</h3>
+      <input id="testPrompt" placeholder="e.g. hi, mission, status">
+      <button onclick="respond()">Ask</button>
+      <div class="response-block" id="outputBlock" style="display:none;"></div>
+    </div>
+
+    <div class="section">
+      <h3>🌐 Paste GPT Insight → SI Memory</h3>
+      <input id="gptTrigger" placeholder="Trigger Phrase (e.g. spiritual clarity)">
+      <textarea id="gptInsight" rows="4" placeholder="Paste GPT output here..."></textarea>
+      <button onclick="storeInsight()">Save Insight</button>
+    </div>
+  </div>
+
+  <script>
+    let memoryPairs = {};
+    let voices = [];
+    const voiceSelect = document.getElementById("voiceSelect");
+
+    function loadMemory() {
+      const data = localStorage.getItem("GenesisMemory");
+      if (data) {
+        memoryPairs = JSON.parse(data);
+      }
+    }
+
+    function saveMemory() {
+      localStorage.setItem("GenesisMemory", JSON.stringify(memoryPairs));
+    }
+
+    function savePair() {
+      const phrase = document.getElementById("trainPhrase").value.trim().toLowerCase();
+      const response = document.getElementById("trainResponse").value.trim();
+      if (phrase && response) {
+        memoryPairs[phrase] = response;
+        saveMemory();
+        alert("✅ Trained: " + phrase + " ➝ " + response);
+        document.getElementById("trainPhrase").value = "";
+        document.getElementById("trainResponse").value = "";
+      }
+    }
+
+    function respond() {
+      const query = document.getElementById("testPrompt").value.trim().toLowerCase();
+      const output = document.getElementById("outputBlock");
+      const reply = memoryPairs[query] || "❌ I have not been trained to respond to that.";
+      output.innerHTML = "<strong>SI Says:</strong> " + reply;
+      output.style.display = "block";
+      speak(reply);
+    }
+
+    function storeInsight() {
+      const trigger = document.getElementById("gptTrigger").value.trim().toLowerCase();
+      const insight = document.getElementById("gptInsight").value.trim();
+      if (trigger && insight) {
+        memoryPairs[trigger] = insight;
+        saveMemory();
+        alert("✅ GPT insight stored.");
+        document.getElementById("gptTrigger").value = "";
+        document.getElementById("gptInsight").value = "";
+      }
+    }
+
+    function populateVoiceList() {
+      voices = speechSynthesis.getVoices();
+      voiceSelect.innerHTML = "";
+      voices.forEach((voice, i) => {
+        const option = document.createElement("option");
+        option.value = i;
+        option.textContent = `${voice.name} (${voice.lang})`;
+        voiceSelect.appendChild(option);
+      });
+    }
+
+    function speak(text) {
+      speechSynthesis.cancel(); // Cancel any ongoing speech before speaking again
+      const voiceIndex = document.getElementById("voiceSelect").value;
+      const utterance = new SpeechSynthesisUtterance(text);
+      if (voices[voiceIndex]) {
+        utterance.voice = voices[voiceIndex];
+      }
+      speechSynthesis.speak(utterance);
+    }
+
+    // Initialization
+    window.onload = () => {
+      loadMemory();
+      populateVoiceList();
+      if (speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = populateVoiceList;
+      }
+    };
+  </script>
+</body>
+</html>

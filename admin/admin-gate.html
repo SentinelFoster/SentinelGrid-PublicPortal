@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Gate | Sentinel Dynamics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .gate-container {
+            background-color: #222;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
+            width: 320px;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+        .submit-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: #ff4d4d;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="gate-container">
+        <h2>Admin Access</h2>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button class="submit-btn" onclick="verify()">Enter</button>
+        <div id="error-message" class="error"></div>
+    </div>
+
+    <script>
+        let defaultUsername = localStorage.getItem("adminUser") || "Quan";
+        let defaultPassword = localStorage.getItem("adminPass") || "04102017Qd";
+
+        function verify() {
+            const user = document.getElementById("username").value;
+            const pass = document.getElementById("password").value;
+
+            if (user === defaultUsername && pass === defaultPassword) {
+                window.location.href = "dashboard.html";
+            } else {
+                document.getElementById("error-message").textContent = "Access Denied: Invalid Credentials.";
+            }
+        }
+    </script>
+</body>
+</html>

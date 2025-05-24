@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register | Sentinel Dynamics</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .register-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 350px;
+      text-align: center;
+    }
+    .register-container h2 {
+      margin-bottom: 20px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .register-btn {
+      background: #007bff;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+    }
+    .register-btn:hover {
+      background: #0056b3;
+    }
+    .tier-section {
+      margin-top: 30px;
+    }
+    .tier-section h3 {
+      margin-bottom: 10px;
+    }
+    .tier-buttons a {
+      display: block;
+      margin: 10px 0;
+      background-color: #343a40;
+      color: #fff;
+      padding: 10px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+    .tier-buttons a:hover {
+      background-color: #495057;
+    }
+  </style>
+</head>
+<body>
+  <div class="register-container">
+    <h2>Register for Sentinel Access</h2>
+    <form>
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <input type="password" placeholder="Create Password" required>
+      <button class="register-btn" type="submit">Create Account</button>
+    </form>
+
+    <div class="tier-section">
+      <h3>Choose Your Intelligence Tier:</h3>
+      <div class="tier-buttons">
+        <a href="https://buy.stripe.com/9B65kDai5eQG7VY8H7aR20C" target="_blank">💤 Dormant Observer – $5/month (7-day trial)</a>
+        <a href="https://buy.stripe.com/eVq14n75T5g66RU4qRaR20D" target="_blank">⚙️ Sentinel Core – $15/month (7-day trial)</a>
+        <a href="https://buy.stripe.com/00w7sLcqd23UgsucXnaR20E" target="_blank">🛡 Guardian Elite – $60/month (No trial)</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentinel Playground Template</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #0f0f0f;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+    .playground {
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 600px;
+      box-shadow: 0 0 25px rgba(0, 123, 255, 0.25);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .section {
+      margin-top: 20px;
+    }
+    textarea, input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      background-color: #2a2a2a;
+      border: none;
+      border-radius: 8px;
+      color: white;
+    }
+    button {
+      margin-top: 10px;
+      padding: 12px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .response-block {
+      margin-top: 15px;
+      padding: 15px;
+      background-color: #252525;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="playground">
+    <h2>🧠 Sentinel Intelligence Playground</h2>
+
+    <div class="section">
+      <label for="inputPrompt">Enter a question or training statement:</label>
+      <textarea id="inputPrompt" rows="4" placeholder="Teach or ask the SI something..."></textarea>
+      <button onclick="generateInsight()">Run GPT Enhancement</button>
+      <div id="gptResponse" class="response-block" style="display:none;"></div>
+    </div>
+
+    <div class="section">
+      <label for="memoryNote">Save to Memory (Optional Annotation):</label>
+      <textarea id="memoryNote" rows="3" placeholder="What should the SI learn from this?"></textarea>
+      <button onclick="tagMemory()">Save to SI Memory</button>
+      <div id="memoryResponse" class="response-block" style="display:none;"></div>
+    </div>
+
+    <div class="section">
+      <label for="stripeLink">Stripe Subscription Link:</label>
+      <input id="stripeLink" placeholder="Paste Stripe link here...">
+    </div>
+  </div>
+
+  <script>
+    function generateInsight() {
+      const prompt = document.getElementById("inputPrompt").value;
+      const gptBox = document.getElementById("gptResponse");
+
+      if (prompt.trim() !== "") {
+        gptBox.style.display = "block";
+        gptBox.innerHTML = "<strong>GPT Insight:</strong><br>This is a simulated GPT-4 response based on: "" + prompt + """;
+      }
+    }
+
+    function tagMemory() {
+      const memory = document.getElementById("memoryNote").value;
+      const memoryBox = document.getElementById("memoryResponse");
+
+      if (memory.trim() !== "") {
+        memoryBox.style.display = "block";
+        memoryBox.innerHTML = "<strong>Memory Logged:</strong><br>"" + memory + "" has been saved to this SI's training stack (simulated).";
+      }
+    }
+  </script>
+</body>
+</html>
